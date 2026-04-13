@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Moje CV</title>
-    <link rel="stylesheet" href="red.css">
+    <link rel="stylesheet" href="red.css" id="arkusz-stylu">
 </head>
 <body>
     <div class="cv-container">
         <header>
+            <p>Nr indeksu: 12345</p>
             <img
               src="photo.jpeg"
               alt="Zdjęcie profilowe Vitalii Yakovenko"
               class="profile-photo"
             />
             <h1>Vitalii Yakovenko</h1>
+            <button id="przycisk-motywu">Zmień motyw (Green/Red)</button>
+            <button id="przycisk-sekcji">Ukryj/Pokaż Projekty</button>
         </header>
 
         <main>
@@ -56,18 +59,7 @@
                 </article>
             </section>
 
-            <section>
-                <h2>Edukacja</h2>
-                <ul>
-                    <li>
-                        <strong>Informatyka</strong> - Akademia Finansów i Biznesu Vistula
-                        <br>
-                        Student.
-                    </li>
-                </ul>
-            </section>
-
-            <section>
+            <section id="sekcja-projekty">
                 <h2>Projekty</h2>
                 <ul>
                     <li>Moje pierwsze CV jako strona WWW (HTML)</li>
@@ -84,5 +76,6 @@
             </ul>
         </footer>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
