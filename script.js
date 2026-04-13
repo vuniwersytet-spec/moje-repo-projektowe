@@ -21,3 +21,60 @@ przyciskSekcji.addEventListener("click", function() {
         sekcjaProjekty.style.display = "none";
     }
 });
+
+const formularz = document.getElementById("formularz-kontaktowy");
+const poleImie = document.getElementById("imie");
+const poleNazwisko = document.getElementById("nazwisko");
+const poleEmail = document.getElementById("email");
+const poleWiadomosc = document.getElementById("wiadomosc");
+const komunikatyBledow = document.getElementById("komunikaty-bledow");
+const komunikatSukces = document.getElementById("komunikat-sukces");
+
+formularz.addEventListener("submit", function(zdarzenie) {
+    zdarzenie.preventDefault();
+    
+    komunikatyBledow.innerHTML = "";
+    komunikatSukces.innerHTML = "";
+    
+    let poprawny = true;
+    let wiadomoscBledu = "";
+    
+    const sprawdzCyfry = /\d/;
+    const sprawdzEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+    if (poleImie.value === "") {
+        wiadomoscBledu = wiadomoscBledu + "Pole Imię jest wymagane.<br>";
+        poprawny = false;
+    } else if (sprawdzCyfry.test(poleImie.value)) {
+        wiadomoscBledu = wiadomoscBledu + "Imię nie może zawierać cyfr.<br>";
+        poprawny = false;
+    }
+    
+    if (poleNazwisko.value === "") {
+        wiadomoscBledu = wiadomoscBledu + "Pole Nazwisko jest wymagane.<br>";
+        poprawny = false;
+    } else if (sprawdzCyfry.test(poleNazwisko.value)) {
+        wiadomoscBledu = wiadomoscBledu + "Nazwisko nie może zawierać cyfr.<br>";
+        poprawny = false;
+    }
+    
+    if (poleEmail.value === "") {
+        wiadomoscBledu = wiadomoscBledu + "Pole E-mail jest wymagane.<br>";
+        poprawny = false;
+    } else if (!sprawdzEmail.test(poleEmail.value)) {
+        wiadomoscBledu = wiadomoscBledu + "Podany adres e-mail jest niepoprawny.<br>";
+        poprawny = false;
+    }
+    
+    if (poleWiadomosc.value === "") {
+        wiadomoscBledu = wiadomoscBledu + "Pole Wiadomość jest wymagane.<br>";
+        poprawny = false;
+    }
+    
+    if (poprawny === false) {
+        komunikatyBledow.innerHTML = wiadomoscBledu;
+    } else {
+        komunikatSukces.innerHTML = "Wiadomość została poprawnie przygotowana do wysłania!";
+        formularz.reset();
+    }
+});
