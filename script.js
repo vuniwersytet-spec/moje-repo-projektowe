@@ -1,17 +1,44 @@
-fetch('dane.json')
-    .then(odpowiedz => odpowiedz.json())
-    .then(dane => {
-        const listaUmiejetnosci = document.getElementById('lista-umiejetnosci');
-        dane.umiejetnosci.forEach(umiejetnosc => {
-            const elementListy = document.createElement('li');
-            elementListy.textContent = umiejetnosc;
-            listaUmiejetnosci.appendChild(elementListy);
-        });
+const poleTekstowe = document.getElementById('nowa-notatka');
+const przyciskDodaj = document.getElementById('przycisk-dodaj');
+const listaNotatek = document.getElementById('lista-notatek');
 
-        const listaProjektow = document.getElementById('lista-projektow');
-        dane.projekty.forEach(projekt => {
-            const elementListy = document.createElement('li');
-            elementListy.textContent = projekt;
-            listaProjektow.appendChild(elementListy);
-        });
+let notatki = JSON.parse(localStorage.getItem('zapisaneNotatki')) || [];
+
+function pokazNotatki() {
+    listaNotatek.innerHTML = '';
+    
+    notatki.forEach(function(notatka, indeks) {
+        const elementListy = document.createElement('li');
+        elementListy.textContent = notatka;
+        
+        const przyciskUsun = document.createElement('button');
+        przyciskUsun.textContent = 'Usuń';
+        przyciskUsun.onclick = function() {
+            usunNotatke(indeks);
+        };
+        
+        elementListy.appendChild(przyciskUsun);
+        listaNotatek.appendChild(elementListy);
     });
+}
+
+function dodajNotatke() {
+    const tekst = poleTekstowe.value;
+    
+    if (tekst !== '') {
+        notatki.push(tekst);
+        localStorage.setItem('zapisaneNotatki', JSON.stringify(notatki));
+        poleTekstowe.value = '';
+        pokazNotatki();
+    }
+}
+
+function usunNotatke(indeks) {
+    notatki.splice(indeks, 1);
+    localStorage.setItem('zapisaneNotatki', JSON.stringify(notatki));
+    pokazNotatki();
+}
+
+przyciskDodaj.onclick = dodajNotatke;
+
+pokazNotatki();
