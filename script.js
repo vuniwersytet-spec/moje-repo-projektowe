@@ -1,44 +1,32 @@
-const poleTekstowe = document.getElementById('nowa-notatka');
-const przyciskDodaj = document.getElementById('przycisk-dodaj');
-const listaNotatek = document.getElementById('lista-notatek');
+const formularz = document.getElementById('formularz-kontaktowy');
+const komunikat = document.getElementById('komunikat-potwierdzenia');
 
-let notatki = JSON.parse(localStorage.getItem('zapisaneNotatki')) || [];
+formularz.addEventListener('submit', function(zdarzenie) {
+    zdarzenie.preventDefault();
 
-function pokazNotatki() {
-    listaNotatek.innerHTML = '';
-    
-    notatki.forEach(function(notatka, indeks) {
-        const elementListy = document.createElement('li');
-        elementListy.textContent = notatka;
-        
-        const przyciskUsun = document.createElement('button');
-        przyciskUsun.textContent = 'Usuń';
-        przyciskUsun.onclick = function() {
-            usunNotatke(indeks);
-        };
-        
-        elementListy.appendChild(przyciskUsun);
-        listaNotatek.appendChild(elementListy);
+    const wartoscImie = document.getElementById('imie').value;
+    const wartoscWiadomosc = document.getElementById('wiadomosc').value;
+
+    const daneDoWyslania = {
+        imie: wartoscImie,
+        wiadomosc: wartoscWiadomosc
+    };
+
+    fetch('http://localhost:3000/zapisz', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(daneDoWyslania)
+    })
+    .then(odpowiedz => odpowiedz.text())
+    .then(tekst => {
+        komunikat.textContent = tekst;
+        komunikat.style.color = "green";
+        formularz.reset();
+    })
+    .catch(blad => {
+        komunikat.textContent = "Błąd połączenia z serwerem.";
+        komunikat.style.color = "red";
     });
-}
-
-function dodajNotatke() {
-    const tekst = poleTekstowe.value;
-    
-    if (tekst !== '') {
-        notatki.push(tekst);
-        localStorage.setItem('zapisaneNotatki', JSON.stringify(notatki));
-        poleTekstowe.value = '';
-        pokazNotatki();
-    }
-}
-
-function usunNotatke(indeks) {
-    notatki.splice(indeks, 1);
-    localStorage.setItem('zapisaneNotatki', JSON.stringify(notatki));
-    pokazNotatki();
-}
-
-przyciskDodaj.onclick = dodajNotatke;
-
-pokazNotatki();
+});

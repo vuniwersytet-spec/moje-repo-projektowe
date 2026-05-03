@@ -2,27 +2,24 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Zadanie 7 - Local Storage</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 40px;
-        }
-        li {
-            margin-bottom: 10px;
-        }
-        button {
-            margin-left: 10px;
-        }
-    </style>
+    <title>Zadanie 8 - Backend</title>
 </head>
 <body>
-    <h1>Moje Notatki</h1>
+    <h1>Wyślij dane na serwer</h1>
     
-    <input type="text" id="nowa-notatka" placeholder="Wpisz nową notatkę...">
-    <button id="przycisk-dodaj">Dodaj</button>
-    
-    <ul id="lista-notatek"></ul>
+    <form id="formularz-kontaktowy">
+        <label for="imie">Imię:</label>
+        <input type="text" id="imie" name="imie" required>
+        <br><br>
+        
+        <label for="wiadomosc">Wiadomość:</label>
+        <textarea id="wiadomosc" name="wiadomosc" required></textarea>
+        <br><br>
+        
+        <button type="submit">Wyślij POST</button>
+    </form>
+
+    <p id="komunikat-potwierdzenia"></p>
 
     <script src="script.js"></script>
 </body>
