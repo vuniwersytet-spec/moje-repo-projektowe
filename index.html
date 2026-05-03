@@ -3,20 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Moje CV</title>
-    <link rel="stylesheet" href="red.css" id="arkusz-stylu">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="cv-container">
         <header>
-            <p>Nr indeksu: 12345</p>
             <img
               src="photo.jpeg"
               alt="Zdjęcie profilowe Vitalii Yakovenko"
               class="profile-photo"
             />
             <h1>Vitalii Yakovenko</h1>
-            <button id="przycisk-motywu">Zmień motyw (Green/Red)</button>
-            <button id="przycisk-sekcji">Ukryj/Pokaż Projekty</button>
         </header>
 
         <main>
@@ -36,13 +33,7 @@
 
             <section>
                 <h2>Umiejętności</h2>
-                <ul>
-                    <li>HTML</li>
-                    <li>CSS</li>
-                    <li>Podstawy obsługi komputera</li>
-                    <li>Szybkie uczenie się</li>
-                    <li>Język angielski</li>
-                </ul>
+                <ul id="lista-umiejetnosci"></ul>
             </section>
 
             <section>
@@ -59,41 +50,20 @@
                 </article>
             </section>
 
-            <section id="sekcja-projekty">
-                <h2>Projekty</h2>
+            <section>
+                <h2>Edukacja</h2>
                 <ul>
-                    <li>Moje pierwsze CV jako strona WWW (HTML)</li>
-                    <li>Prosty blog szkolny</li>
+                    <li>
+                        <strong>Informatyka</strong> - Akademia Finansów i Biznesu Vistula
+                        <br>
+                        Student.
+                    </li>
                 </ul>
             </section>
 
             <section>
-                <h2>Formularz kontaktowy</h2>
-                <form id="formularz-kontaktowy">
-                    <div>
-                        <label for="imie">Imię:</label><br>
-                        <input type="text" id="imie" name="imie">
-                    </div>
-                    <br>
-                    <div>
-                        <label for="nazwisko">Nazwisko:</label><br>
-                        <input type="text" id="nazwisko" name="nazwisko">
-                    </div>
-                    <br>
-                    <div>
-                        <label for="email">E-mail:</label><br>
-                        <input type="text" id="email" name="email">
-                    </div>
-                    <br>
-                    <div>
-                        <label for="wiadomosc">Wiadomość:</label><br>
-                        <textarea id="wiadomosc" name="wiadomosc" rows="4"></textarea>
-                    </div>
-                    <br>
-                    <button type="submit">Wyślij wiadomość</button>
-                </form>
-                <div id="komunikaty-bledow" style="color: #991b1b; font-weight: bold; margin-top: 10px;"></div>
-                <div id="komunikat-sukces" style="color: #15803d; font-weight: bold; margin-top: 10px;"></div>
+                <h2>Projekty</h2>
+                <ul id="lista-projektow"></ul>
             </section>
         </main>
 
